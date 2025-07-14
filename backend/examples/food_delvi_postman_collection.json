@@ -1,0 +1,844 @@
+{
+	"info": {
+		"_postman_id": "e5a3f8c1-8e6c-4d5e-9a7e-f2b7d0c5e8d9",
+		"name": "Food Delvi API",
+		"description": "A collection for testing the Food Delvi API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"password123\",\n    \"address\": {\n        \"street\": \"123 Main St\",\n        \"city\": \"Mumbai\",\n        \"state\": \"Maharashtra\",\n        \"zipCode\": \"400001\",\n        \"country\": \"India\"\n    },\n    \"phone\": \"9876543210\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						},
+						"description": "Register a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "Login a user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						},
+						"description": "Get current user profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Details",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Updated\",\n    \"email\": \"john.updated@example.com\",\n    \"address\": {\n        \"street\": \"456 New St\",\n        \"city\": \"Mumbai\",\n        \"state\": \"Maharashtra\",\n        \"zipCode\": \"400002\",\n        \"country\": \"India\"\n    },\n    \"phone\": \"9876543211\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/updatedetails",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"updatedetails"
+							]
+						},
+						"description": "Update user details"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentPassword\": \"password123\",\n    \"newPassword\": \"newpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/updatepassword",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"updatepassword"
+							]
+						},
+						"description": "Update user password"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/forgotpassword",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"forgotpassword"
+							]
+						},
+						"description": "Request password reset"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"newpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/resetpassword/{{resetToken}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"resetpassword",
+								"{{resetToken}}"
+							]
+						},
+						"description": "Reset password with token"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"logout"
+							]
+						},
+						"description": "Logout user"
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication related endpoints"
+		},
+		{
+			"name": "Foods",
+			"item": [
+				{
+					"name": "Get All Foods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/foods?page=1&limit=10&sort=-createdAt&category=main course&isVegetarian=true&minPrice=100&maxPrice=500&search=chicken",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"foods"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": "-createdAt"
+								},
+								{
+									"key": "category",
+									"value": "main course"
+								},
+								{
+									"key": "isVegetarian",
+									"value": "true"
+								},
+								{
+									"key": "minPrice",
+									"value": "100"
+								},
+								{
+									"key": "maxPrice",
+									"value": "500"
+								},
+								{
+									"key": "search",
+									"value": "chicken"
+								}
+							]
+						},
+						"description": "Get all foods with filtering, sorting, and pagination"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Food by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/foods/{{foodId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"foods",
+								"{{foodId}}"
+							]
+						},
+						"description": "Get a single food by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Food (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Butter Chicken\",\n    \"description\": \"Tender chicken in a rich, creamy tomato sauce\",\n    \"price\": 350,\n    \"category\": \"main course\",\n    \"image\": \"butter-chicken.jpg\",\n    \"isVegetarian\": false,\n    \"isVegan\": false,\n    \"isGlutenFree\": true,\n    \"ingredients\": [\"chicken\", \"butter\", \"cream\", \"tomato\", \"spices\"],\n    \"isAvailable\": true,\n    \"stock\": 50\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/foods",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"foods"
+							]
+						},
+						"description": "Create a new food item (admin only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Food (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"price\": 380,\n    \"isAvailable\": true,\n    \"stock\": 45\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/foods/{{foodId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"foods",
+								"{{foodId}}"
+							]
+						},
+						"description": "Update a food item (admin only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Food (Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/foods/{{foodId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"foods",
+								"{{foodId}}"
+							]
+						},
+						"description": "Delete a food item (admin only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Foods by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/foods/categories/main course",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"foods",
+								"categories",
+								"main course"
+							]
+						},
+						"description": "Get foods by category"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Top Rated Foods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/foods/top?limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"foods",
+								"top"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Get top rated foods"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Review to Food",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 5,\n    \"comment\": \"Delicious food! Will order again.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/foods/{{foodId}}/reviews",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"foods",
+								"{{foodId}}",
+								"reviews"
+							]
+						},
+						"description": "Add a review to a food item"
+					},
+					"response": []
+				}
+			],
+			"description": "Food related endpoints"
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderItems\": [\n        {\n            \"food\": \"{{foodId1}}\",\n            \"name\": \"Butter Chicken\",\n            \"image\": \"butter-chicken.jpg\",\n            \"price\": 350,\n            \"quantity\": 2\n        },\n        {\n            \"food\": \"{{foodId2}}\",\n            \"name\": \"Paneer Tikka\",\n            \"image\": \"paneer-tikka.jpg\",\n            \"price\": 280,\n            \"quantity\": 1\n        }\n    ],\n    \"shippingAddress\": {\n        \"street\": \"123 Main St\",\n        \"city\": \"Mumbai\",\n        \"state\": \"Maharashtra\",\n        \"zipCode\": \"400001\",\n        \"country\": \"India\"\n    },\n    \"paymentMethod\": \"credit_card\",\n    \"taxPrice\": 49,\n    \"shippingPrice\": 50,\n    \"totalPrice\": 1029\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						},
+						"description": "Create a new order"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders/{{orderId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"{{orderId}}"
+							]
+						},
+						"description": "Get an order by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders/myorders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"myorders"
+							]
+						},
+						"description": "Get logged in user's orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order to Paid",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"pi_123456789\",\n    \"status\": \"succeeded\",\n    \"update_time\": \"2023-05-06T12:30:45Z\",\n    \"payer\": {\n        \"email_address\": \"john.doe@example.com\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/orders/{{orderId}}/pay",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"{{orderId}}",
+								"pay"
+							]
+						},
+						"description": "Update order to paid status"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order to Delivered (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders/{{orderId}}/deliver",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"{{orderId}}",
+								"deliver"
+							]
+						},
+						"description": "Update order to delivered status (admin only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orders (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						},
+						"description": "Get all orders (admin only)"
+					},
+					"response": []
+				}
+			],
+			"description": "Order related endpoints"
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Create Payment Intent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderId\": \"{{orderId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/payments/create-payment-intent",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payments",
+								"create-payment-intent"
+							]
+						},
+						"description": "Create a Stripe payment intent"
+					},
+					"response": []
+				},
+				{
+					"name": "Process Cash on Delivery",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderId\": \"{{orderId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/payments/cash-on-delivery",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payments",
+								"cash-on-delivery"
+							]
+						},
+						"description": "Process a cash on delivery order"
+					},
+					"response": []
+				}
+			],
+			"description": "Payment related endpoints"
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "Upload Food Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/path/to/your/image.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/upload",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"upload"
+							]
+						},
+						"description": "Upload a food image"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Uploaded Image",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/upload/{{filename}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"upload",
+								"{{filename}}"
+							]
+						},
+						"description": "Delete an uploaded image"
+					},
+					"response": []
+				}
+			],
+			"description": "File upload related endpoints"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000/api",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "your_auth_token_here",
+			"type": "string"
+		},
+		{
+			"key": "foodId",
+			"value": "food_id_here",
+			"type": "string"
+		},
+		{
+			"key": "foodId1",
+			"value": "food_id_1_here",
+			"type": "string"
+		},
+		{
+			"key": "foodId2",
+			"value": "food_id_2_here",
+			"type": "string"
+		},
+		{
+			"key": "orderId",
+			"value": "order_id_here",
+			"type": "string"
+		},
+		{
+			"key": "resetToken",
+			"value": "reset_token_here",
+			"type": "string"
+		},
+		{
+			"key": "filename",
+			"value": "filename_here",
+			"type": "string"
+		}
+	]
+}
